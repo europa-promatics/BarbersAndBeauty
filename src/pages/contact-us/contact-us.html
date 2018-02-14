@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="appheader">
+    <button ion-button menuToggle start>
+      <ion-icon name="menu" style="color:#fff"></ion-icon>
+    </button>
+  <ion-title class="title">CONTACT US</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div class="heading">
+    <div class="text">WE ARE HAPPY TO HEAR FROM YOU!</div>
+  </div>
+  <form [formGroup]="contactus">
+    <ion-list no-lines>
+      <div  class="item1">
+        <ion-item class="itemdata">
+          <ion-input value="{{username}}" class="input-text" type="text" [(ngModel)]="name" 
+          formControlName="username"  placeholder="Name"></ion-input>
+        </ion-item>
+        <p style="color:red"  *ngIf="!contactus.controls.username.valid && (contactus.controls.username.dirty )">*Atleast 2 Characters,No Number </p>
+      </div>
+      <div class="item2">
+        <ion-item class="itemdata">
+          <ion-input value="{{useremail}}" type="text" formControlName="useremail" placeholder="E-mail" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <p style="color:red"  *ngIf="!contactus.controls.useremail.valid && (contactus.controls.useremail.dirty )">*Invalid E-mail </p>  
+      </div>
+      <div class="item4">
+        <ion-item class="itemdata">
+          <ion-input value="{{customernumber}}" type="text" placeholder="Number" formControlName="usernumber" 
+          [(ngModel)]="number"></ion-input>
+        </ion-item>
+        <p style="color:red"  *ngIf="!contactus.controls.usernumber.valid && (contactus.controls.usernumber.dirty )">*Invalid Number</p>  
+      </div>
+      <textarea class="textarea-text" [(ngModel)]="message" formControlName="usermessage"  placeholder="Message"></textarea>
+      <p style="color:red"  *ngIf="!contactus.controls.usermessage.valid && (contactus.controls.usermessage.dirty )">*Must Contain Atleast 2 Character</p>  
+    </ion-list>
+    <button class="contact-btn" [disabled]="!contactus.valid"  (click)="Contact()" ion-button color="appcolor">SUBMIT</button>
+  </form>
+</ion-content>

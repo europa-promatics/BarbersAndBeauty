@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="appheader">
+    <ion-title class="title">Search your Location</ion-title>
+      <ion-buttons end  >
+            <button icon-only ion-button (click)="dismiss()">
+               <ion-icon name="close-circle"></ion-icon>
+            </button>
+        </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="pac-card" id="pac-card" padding>
+    <div id="type-selector" class="pac-controls">
+      <input (click)="toggleType('changetype-all')" type="radio" name="type" id="changetype-all" checked="checked" style="  margin-left: 10px;">
+      <label for="changetype-all">All</label>
+      <input (click)="toggleType('changetype-address')" type="radio" name="type" id="changetype-address" style="  margin-left: 10px;">
+      <label for="changetype-address">Addresses</label>
+    </div>
+
+    <div id="pac-container">
+      <input (input)="changeInput()" [(ngModel)]="inputvalue" id="pac-input" type="text" placeholder="Enter a location">
+      <div style="background:white;position: fixed;z-index: 1;width: calc(100% - 32px);">
+        <ion-item  style="margin:0;padding:1;width:100%;"*ngFor="let item of autocompleteItems" 
+            (click)="chooseItem(item)">
+            {{ item.description }}
+        </ion-item>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="infowindow-content">
+    <img src="" width="16" height="16" id="place-icon">
+    <span id="place-name"  class="title"></span><br>
+    <span id="place-address"></span>
+  </div> -->
+
+  <div  #mapsearch id="mapsearch"></div>
+</ion-content>

@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-navbar color="appheader">
+    <button ion-button menuToggle start>
+      <ion-icon name="menu" style="color:#fff"></ion-icon>
+    </button>
+    <ion-title class="title">NOTIFICATION</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-segment  [(ngModel)]="Notiseg" color="primary" >
+    <ion-segment-button value="accepted">
+      Booking Notifications 
+    </ion-segment-button>
+    <ion-segment-button value="declined">
+      Messages 
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="Notiseg">
+    <div *ngSwitchCase="'accepted'">
+      <div *ngFor="let data of notificationdata;let i=index ">
+        <ion-list *ngIf="data.flag=='accept'">
+          <ion-item class="item-client" id="var_{{i}} "  
+          [ngStyle]="getStyle(data.color_status)"  (click)="data.color_status='0';selectedtime(i,data.payment_id)">
+            <ion-avatar item-start *ngIf="data.booked_status=='employeebooked'">
+              <img *ngIf="data.profile_image!=null" src="http://gagandeepsethi.com/salonDirectory/img/employeeprofileimage/{{data.profile_image}}">
+              <img *ngIf="data.profile_image==null" src="assets/img/user.jpg">
+            </ion-avatar>
+            <ion-avatar item-start *ngIf="data.booked_status=='salonbooked'">
+              <img *ngIf="data.profile_image!=null" src="http://gagandeepsethi.com/salonDirectory/img/salonownerprofileimage/{{data.profile_image}}">
+              <img *ngIf="data.profile_image==null" src="assets/img/user.jpg">
+            </ion-avatar>
+            <div class="content">
+              <div>Your booking has been accepted</div>
+              <div>with {{data.salonname}}</div>
+              <div>{{data.name}}</div>
+              <div>Date-{{data.bookingdate | date}}</div>
+              <div>Time-{{data.bookingtime}}</div>
+              <div style="word-wrap: break-word!important; word-break: break-all!important;">Address-{{data.salonaddress}}</div>
+              <!-- <button ion-button small class="btn" (click)="pay(data.payment_id,data.cost)" color="appcolor">Pay $ {{data.cost}}</button>
+              <button ion-button small class="btn" color="appcolor" (click)="cancelbooking(data.payment_id,data.bookingdate)">Cancel Booking</button> -->
+              <button  ion-button small class="btn" (click)="pay(data.payment_id,data.cost,data.online_booking)" color="appcolor">Online Payment</button>
+              <button ion-button small class="btn" color="appcolor" (click)="cancelbooking(data.payment_id,data.bookingdate)">Cancel Booking</button>
+            </div>
+          </ion-item>
+        </ion-list>
+        <ion-list *ngIf="data.flag=='decline'">
+          <ion-item class="item-client" id="var_{{i}} " [ngStyle]="getStyle(data.color_status)" (click)="data.color_status='0';selectedtime(i,data.payment_id)">
+            <ion-avatar item-start *ngIf="data.booked_status=='employeebooked'">
+              <img *ngIf="data.profile_image!=null" src="http://gagandeepsethi.com/salonDirectory/img/employeeprofileimage/{{data.profile_image}}">
+              <img *ngIf="data.profile_image==null" src="assets/img/user.jpg">
+            </ion-avatar>
+            <ion-avatar item-start *ngIf="data.booked_status=='salonbooked'">
+              <img *ngIf="data.profile_image!=null" src="http://gagandeepsethi.com/salonDirectory/img/salonownerprofileimage/{{data.profile_image}}">
+              <img *ngIf="data.profile_image==null" src="assets/img/user.jpg">
+            </ion-avatar>
+            <div class="content">
+              <div>Your booking has been declined</div>
+              <div>with {{data.salonname}}</div>
+              <div>{{data.name}}</div>
+              <div>Date-{{data.bookingdate |date }}</div>
+              <div>Time-{{data.bookingtime}}</div>
+              <div style="word-wrap: break-word!important; word-break: break-all!important;">Address-{{data.salonaddress}}</div>
+            </div>
+          </ion-item>
+        </ion-list>
+        <ion-list *ngIf="data.flag=='cancel'">
+          <ion-item class="item-client" id="var_{{i}} " [ngStyle]="getStyle(data.color_status)" (click)="data.color_status='0';selectedtime(i,data.payment_id)">
+            <ion-avatar item-start *ngIf="data.booked_status=='employeebooked'">
+              <img *ngIf="data.profile_image!=null" src="http://gagandeepsethi.com/salonDirectory/img/employeeprofileimage/{{data.profile_image}}">
+              <img *ngIf="data.profile_image==null" src="assets/img/user.jpg">
+            </ion-avatar>
+            <ion-avatar item-start *ngIf="data.booked_status=='salonbooked'">
+              <img *ngIf="data.profile_image!=null" src="http://gagandeepsethi.com/salonDirectory/img/salonownerprofileimage/{{data.profile_image}}">
+              <img *ngIf="data.profile_image==null" src="assets/img/user.jpg">
+            </ion-avatar>
+            <div class="content">
+              <div>Your booking has been cancelled</div>
+              <div>with {{data.salonname}}</div>
+              <div>{{data.name}}</div>
+              <div>Date-{{data.bookingdate |date }}</div>
+              <div>Time-{{data.bookingtime}}</div>
+              <div style="word-wrap: break-word!important; word-break: break-all!important;">Address-{{data.salonaddress}}</div>
+            </div>
+          </ion-item>
+        </ion-list>
+      </div>
+      <!-- <div *ngFor="let data of declined;let i=index ">
+        <ion-list>
+          <ion-item  id="var_{{i}}" >
+            <ion-avatar item-start *ngIf="data.booked_status=='employeebooked'">
+              <img *ngIf="data.profile_image!=null" src="http://gagandeepsethi.com/salonDirectory/img/employeeprofileimage/{{data.profile_image}}">
+              <img *ngIf="data.profile_image==null" src="assets/img/user.jpg">
+            </ion-avatar>
+            <ion-avatar item-start *ngIf="data.booked_status=='salonbooked'">
+              <img *ngIf="data.profile_image!=null" src="http://gagandeepsethi.com/salonDirectory/img/salonownerprofileimage/{{data.profile_image}}">
+              <img *ngIf="data.profile_image==null" src="assets/img/user.jpg">
+            </ion-avatar>
+            <div class="content">
+              <div>Your Booking has been Cancelled </div>
+              <div> with {{data.salonname}}</div>
+              <div>  {{data.name}}</div>
+              <div>Date-{{data.bookingdate |date }}</div>
+              <div>Time-{{data.bookingtime}}</div>
+              <div>Address-{{data.salonaddress}}</div>
+            </div>
+          </ion-item>
+        </ion-list>
+      </div> -->
+      <div *ngIf="nodata=='true'" class="past">
+        <img src="assets/icon/bell.png">
+        <div>Sorry! No New Notifications</div>
+      </div>
+    </div>
+  </div>
+
+  <div [ngSwitch]="Notiseg">
+     <div *ngSwitchCase="'declined'">
+      <div *ngFor="let data of declined;let i=index ">
+        <ion-list>
+          <ion-item  id="var_{{i}}" [ngClass]="(data.message_seen==0) ? 'item-clientt' : ''"  (click)="mark_msg(data.id, 1)" >
+            <ion-avatar item-start>
+              <img src="http://gagandeepsethi.com/salonDirectory/img/admin/logo.png">
+                                                            
+            </ion-avatar>
+           
+            <div class="content">
+              <div>{{data.message}}</div><hr>
+              <div>{{data.date |date }}</div>
+            </div>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div *ngIf="nodecline=='true'" class="past">
+        <img src="assets/icon/bell.png">
+        <div>Sorry! No New Messages</div>
+      </div>
+    </div> 
+  </div>
+</ion-content>

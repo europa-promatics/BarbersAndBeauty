@@ -1,0 +1,82 @@
+<ion-header>
+	<ion-navbar color="purple">
+		<ion-title class="title">BOOKING DETAILS</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+
+	<div class="main-div" *ngIf="data">
+		<img *ngIf="data.customer_profile_image!=null" class="profile-image" src="http://gagandeepsethi.com/salonDirectory/img/customerprofileimage/{{data?.customer_profile_image}}"> 
+		<img class="profile-image" *ngIf="data.customer_profile_image==null" src="assets/img/user.jpg">
+	</div>
+	<div class="name" style="float: left;width: 100%;background: #0000FF">
+		<h4 style="margin: 12px auto;width: 40%;">{{data?.customername}}</h4>
+		<!-- <div *ngIf="notification_data.position=='salonowner' " style="float: left;margin-left: 15px;margin-top: -46px">
+			<button  ion-button block   (click)="accept(notfication_data)">
+			Accept </button>
+		</div>
+		<div  *ngIf="notification_data.position=='salonowner' "  style="float:right;margin-right: 15px;margin-top: -46px ">
+		<button ion-button block  (click)="decline(notfication_data)">
+		Decline </button>
+		</div> -->
+		<button ion-button round (click)="cancelbooking()">CANCEL</button>
+	</div>
+	<div class="super">
+		<div class="user-info">
+			<div class="user-profile">
+				<img  class="blue" src="assets/icon/name.png">
+				<div  class="field-details">
+					Name:    {{data?.customername}}
+				</div>
+			</div>
+			<div class="user-profile">
+				<img  class="blue" src="assets/icon/number.png">
+				<div  class="field-details">
+					Contact No. :   {{data?.phone_number}}
+				</div>
+			</div>
+			<div class="user-profile">
+				<img  class="blue" src="assets/icon/mail.png">
+				<div  class="field-details">
+					Email: {{ notification_data?.email}}
+				</div>
+			</div>
+			<div class="user-profile">
+				<img  class="blue" src="assets/icon/calendar(1).png">
+				<div   class="field-details">
+					Appointment Date:   {{data?.date}}
+				</div>
+			</div>
+			<div class="user-profile">
+				<img  class="blue" src="assets/icon/notepad.png">
+				<div   class="field-details">
+					Service Selected: <span *ngFor="let m of data?.service">{{m.title}} </span>  
+				</div>
+			</div>
+			<div class="user-profile">
+				<img  class="blue" src="assets/icon/clock.png">
+				<div   class="field-details">
+					Start Time: {{data?.starttime}}
+				</div>
+			</div>
+			<div class="user-profile">
+				<img  class="blue" src="assets/icon/clock.png">
+				<div   class="field-details">
+					End Time: {{data?.endtime}}
+				</div>
+			</div>
+			<div class="user-profile">
+				<img  class="blue" src="assets/icon/money.png">
+				<div   class="field-details">
+					Total Charges: {{data?.total_amount}}
+				</div>
+			</div>
+			<div *ngIf="data && data.note!=null" class="user-profile">
+       			<img  class="blue" src="assets/icon/service.png">
+         		<div  class="field-details">
+			        Note: {{data.note}}
+         		</div>
+      		</div>
+		</div>
+	</div>
+</ion-content>

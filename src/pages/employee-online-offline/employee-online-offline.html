@@ -1,0 +1,24 @@
+
+<ion-header>
+  <ion-navbar color="appheader">
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title class="title">SETTINGS</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<div class="status">
+<ion-item *ngIf="settingsType==2">
+	<ion-label>AVAILABILITY:  <b>{{status_text}}</b></ion-label>
+	<ion-toggle [(ngModel)]="status" (ionChange)="Status()"></ion-toggle>
+</ion-item>
+    <ion-item>
+    <ion-label>Message Notifications</ion-label>
+    <ion-toggle [(ngModel)]="message_notifications"  (ionChange)="enable_notifications(message_notifications)" 
+
+ ></ion-toggle>
+  </ion-item>
+</div>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="purple">
+    <ion-title class="title">ADD SERVICE</ion-title>
+     <ion-buttons right>
+        <button ion-button (click)="cancel()" >CANCEL</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="addservice">
+    <ion-label  style="color: #909090">Service Name:</ion-label>
+    <ion-item style="color: #000">
+      <ion-input type="text"   placeholder="ENTER SERVICE NAME" formControlName ="name"></ion-input>
+    </ion-item>
+    <p style="color:red"  *ngIf="!addservice.controls.name.valid && 
+    (addservice.controls.name.dirty )">*Atleast 2 Characters,No Numbers </p>
+    <br>
+    <ion-label style="color: #909090">Cost(In $):</ion-label>
+    <ion-item style="color: #000">
+      <ion-input    placeholder="ENTER COST" formControlName ="cost"></ion-input>
+    </ion-item>
+    <p style="color:red"  *ngIf="!addservice.controls.cost.valid && 
+    (addservice.controls.cost.dirty )">*Invalid Field  </p>
+    <br>
+    <ion-label style="color: #909090">Description:</ion-label>
+    <ion-item style="color: #000">
+      <ion-input   placeholder="ENTER DESCRIPTION" formControlName ="description" ></ion-input>
+    </ion-item>
+    <p style="color:red"  *ngIf="!addservice.controls.description.valid && 
+    (addservice.controls.description.dirty )">*Invalid field </p>
+    <br>
+    <ion-label style="color: #909090">Duration:</ion-label>
+    <ion-item>
+      <ion-datetime placeholder="ENTER DURATION" displayFormat="HH:mm" min="00:15" max="03:00" formControlName="time"  > </ion-datetime>
+    </ion-item>
+  </form>
+  <br>
+  <br>
+  <ion-label style="color: #909090">Select Employee:</ion-label>
+  <ion-item>
+    <ion-label  style="color: #909090;padding-top: 0px;font-size: 18px">Select Employee </ion-label>
+    <ion-select  [(ngModel)]="selected_service" multiple="true">
+      <div *ngFor = "let m of data">
+        <ion-option [value]="m">{{m.name}}</ion-option>
+      </div>
+    </ion-select>
+  </ion-item>
+  <div>
+    <button ion-button block style="margin: 26px 28%" (click)="save()" [disabled]=!addservice.valid >SAVE</button>
+  </div>
+</ion-content>

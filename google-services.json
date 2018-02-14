@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "364432173196",
+    "firebase_url": "https://barberbeauty-a6ef9.firebaseio.com",
+    "project_id": "barberbeauty-a6ef9",
+    "storage_bucket": "barberbeauty-a6ef9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364432173196:android:d6c569f337fd0eee",
+        "android_client_info": {
+          "package_name": "promatics.BarberBueaty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364432173196-5pmnk0bu6mp24jpp3ch43h93l2mbbmsu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzOaZw5TtJC1sh3GG18es1NGPlQWB7-iw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

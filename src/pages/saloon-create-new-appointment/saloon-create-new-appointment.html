@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar color="purple">
+    <ion-title class="title">ADD NEW APPOINTMENT</ion-title>
+     <ion-buttons right>
+        <button ion-button (click)="cancel()" >CANCEL</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="addservice">
+    <ion-label style="color: #909090">Select Service:</ion-label>
+	<ion-item>
+    <ion-label  style="color: #909090;padding-top: 0px;font-size: 18px">Select Service </ion-label>
+    <ion-select formControlName="service_name">
+       <div *ngFor = "let m of serviceData">
+        <ion-option [value]="m.id">{{m.title}}</ion-option>
+      </div>
+    </ion-select>
+  </ion-item>
+      <ion-label style="color: #909090">Select Client:</ion-label>
+	<ion-item>
+    <ion-label  style="color: #909090;padding-top: 0px;font-size: 18px">Select Client </ion-label>
+    <ion-select formControlName="client_name">
+        <div *ngFor = "let m of clientData">
+        <ion-option [value]="m.customer_id">{{m.customername}}</ion-option>
+      </div>
+    </ion-select>
+  </ion-item>
+    <!--p style="color:red"  *ngIf="!addservice.controls.name.valid && 
+    (addservice.controls.name.dirty )">*Atleast 2 Characters,No Numbers </p-->
+    <!--ion-label style="color: #909090">Enter Cost(In $):</ion-label>
+    <ion-item style="color: #000">
+      <ion-input placeholder="TOTAL COST" formControlName="cost"></ion-input>
+    </ion-item>
+    <p style="color:red"  *ngIf="!addservice.controls.cost.valid && 
+    (addservice.controls.cost.dirty )">*Invalid Field  </p>
+    <br /-->
+    <ion-label style="color: #909090">Notes:</ion-label>
+    <ion-item style="color: #000">
+      <ion-input  formControlName="notes" placeholder="ENTER NOTE TO THIS APPOINTMENT"  ></ion-input>
+    </ion-item>
+    <!--p style="color:red"  *ngIf="!addservice.controls.description.valid && 
+    (addservice.controls.description.dirty )">*Invalid field </p-->
+
+    <ion-label style="color: #909090">Choose Date:</ion-label>
+    <ion-item>
+      <ion-datetime  placeholder="ENTER DATE OF APPOINTMENT" displayFormat="MM/DD/YYYY" formControlName="date"  > </ion-datetime>
+    </ion-item>
+	
+	  <ion-label style="color: #909090">Choose Start Time:</ion-label>
+    <ion-item>
+      <ion-datetime placeholder="ENTER START TIME" displayFormat="HH:mm" formControlName="start_time"  > </ion-datetime>
+    </ion-item>
+	
+	 <!--ion-label style="color: #909090">Choose End Time:</ion-label>
+    <ion-item>
+      <ion-datetime placeholder="ENTER DURATION" displayFormat="HH:mm" formControlName="end_time"  > </ion-datetime>
+    </ion-item-->
+  </form>
+  <br>
+  <br>
+  
+  <div>
+    <button ion-button block style="margin: 26px 28%" (click)="save()" [disabled]=!addservice.valid >SAVE</button>
+  </div>
+</ion-content>

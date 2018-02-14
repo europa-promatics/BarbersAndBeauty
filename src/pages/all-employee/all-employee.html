@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="appheader">
+    <ion-title class="title">EMPLOYEE</ion-title>
+    <ion-icon (tap) ="add_staff()" name="add" class="noti-bttnn"></ion-icon> 
+  </ion-navbar>
+</ion-header>
+<ion-content >
+  <ion-item *ngFor="let data of minedata" (click)="view(data)" >
+    <ion-avatar item-start>
+      <img style="height: 55px width:55px" src= "assets/img/user.jpg">
+    </ion-avatar>
+    <span class="textclass" ><strong>{{data.full_name}}</strong> </span>
+    <br>
+    <span class="textclass">Category:{{data.category}}</span>
+  </ion-item>
+  <div *ngIf="show==true " class="past">
+    <img src="assets/icon/smile.png">
+    <div>Sorry!Nothing to Display</div>
+  </div>
+</ion-content>
